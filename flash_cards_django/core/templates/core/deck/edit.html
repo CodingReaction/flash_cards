@@ -1,0 +1,28 @@
+
+{% extends 'core/base.html' %}
+
+{% block title %} Modify Deck {% endblock %}
+
+{% block content %}
+    <form action="{{request.path}}" method="POST">
+        {% csrf_token %}
+        {{ deck_form.as_div}}
+        <button type="submit">Modify Deck</button>
+    </form>
+    <div>
+        <div>
+            <a href="{% url 'core:card-create'%}?deck={{deck.id}}">New card</a>
+        </div>
+        {% for card in flash_cards %}
+            <div>
+                <ul>
+                {% for tag in card.tags_set.all %}
+                    <li> #{{ tag.name }}</li>
+                {% endfor %}
+                </ul>
+                <a href="{% url 'core:card-edit' card.id %}">Edit</a>
+                <p>{{ card.front }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

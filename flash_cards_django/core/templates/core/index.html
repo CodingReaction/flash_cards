@@ -1,0 +1,14 @@
+{% extends 'core/base.html'%}
+{% block title %} Flash cards - Main page {% endblock %}
+
+{% block content %}
+    <h1>Created DECKS</h1>
+    <div>
+        <a href="{% url 'core:deck-create' %}"> Create deck</a>
+    </div>
+    {% for deck in decks %}
+    <div>
+        <a href="{% url 'core:deck-edit' deck.id %}">{{ deck.title }}</a>
+    </div>
+    {% endfor %}
+{% endblock %}

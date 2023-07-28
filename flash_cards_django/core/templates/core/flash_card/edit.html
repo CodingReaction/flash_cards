@@ -1,0 +1,12 @@
+
+{% extends 'core/base.html' %}
+
+{% block title %} Modify Card {% endblock %}
+
+{% block content %}
+    <form action="{{request.path}}" method="POST">
+        {% csrf_token %}
+        {{ card_form.as_div}}
+        <button type="submit">Modify Card</button>
+    </form>
+{% endblock %}
